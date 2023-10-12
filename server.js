@@ -46,6 +46,6 @@ server.use((request, response, next) => {
 
 //DATABASE SETUP & CONNECTION - Start Backend API Server
 mongoose.connect(process.env.MONGO_URI)
-.then(() => server.listen(process.env.PORT || (8000), () => console.log('Server Online')))
+.then(() => server.listen(process.env.PORT || (5000), () => console.log('Server Online')))
 .catch((error) => console.log(error))
 

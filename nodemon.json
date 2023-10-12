@@ -1,6 +1,5 @@
 {
     "env": {
-        "PORT":5000,
         "MONGO_URI":"mongodb+srv://KEPressUser:KE_Pressltd2025@cluster0.lp345ou.mongodb.net/mernstack",
         "MAP_API_KEY":"AIzaSyBPs5LVw-n1bBXtJevko7RIuHC2h3gRPtk",
         "JWT_SECRET":"supersecretpasskey"
