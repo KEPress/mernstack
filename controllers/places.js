@@ -26,9 +26,10 @@ exports.getPlace = async (request, response, next) => {
 
 exports.getPlaces = async (request, response, next) => {
 
+    let places 
     try {
         places = await PlaceModel.find()
-        if (!place) return next(new HttpError('No Records', 404))
+        if (!places) return next(new HttpError('No Records', 404))
         else response.status(200).json(places)
     } catch (error) {
         return next(new HttpError(error, 500))
