@@ -1,0 +1,34 @@
+$map: (plain: white, primary: #292929, secondary: #f8df00);
+
+@function colorMap($key) {
+    @return map-get($map, $key);
+}
+
+@mixin mobile {
+    @media (min-width: 768px) {
+        .navlinks {
+            flex-direction: row;
+
+            li { 
+                margin: 0rem 0.5rem; 
+                
+                a {
+                    color: colorMap(plain);
+                    text-decoration: none;
+                }
+            }
+
+            button {
+                color: colorMap(plain);
+                background: transparent;
+                border: 1px solid colorMap(plain);
+
+                &:hover, &:active {
+                    color: colorMap(primary);
+                    background: colorMap(secondary);
+                }
+            }
+        }
+    }
+}
+

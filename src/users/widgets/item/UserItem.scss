@@ -1,0 +1,47 @@
+$map: (plain: white, primary: #292929, secondary: #ffd900);
+
+@function colorMap($key) {
+    @return map-get($map, $key);
+}
+
+.user-item {
+    margin: 1rem;
+    width: calc(45% - 2rem);
+    min-width: 17.5rem;
+
+    a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        text-decoration: none;
+        padding: 1rem;
+        color: colorMap(plain);
+        background: colorMap(primary);
+
+        &:hover, &:active {
+            background: colorMap(secondary);
+        }
+    }
+
+    .user-image { 
+            width: 4rem; height: 4rem;
+            margin-right: 1rem;
+    }
+    
+    .user-info {
+    
+        h2 {
+            font-size: 1.5rem;
+            margin: 0rem 0rem 0.5rem 0rem;
+            font-weight: normal;
+            color: colorMap(secondary);
+
+            &:hover, &:active { color: colorMap(primary); }
+        }
+    
+        h3 { 
+            margin: 0px; 
+            &:hover, &:active { color: colorMap(primary); }
+        }
+    } 
+}

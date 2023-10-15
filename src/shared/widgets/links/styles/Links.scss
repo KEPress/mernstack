@@ -1,0 +1,47 @@
+@import 'mobile.scss';
+
+
+.navlinks {
+    display: flex;
+    list-style: none;
+    width: 100%; height: 100%;
+    margin: 0px; padding: 0px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    @include mobile;
+
+    li { 
+        margin: 1rem; 
+
+        a { 
+            color: colorMap(primary);
+            border: 1px solid transparent;
+            text-decoration: none;
+            padding: 0.5rem;
+
+            &:hover, &:active, &.active {
+                color: colorMap(primary);
+                background: colorMap(secondary);
+                border-color: colorMap(primary);
+            }
+        }
+
+    }
+
+    button {
+        font: inherit;
+        color: colorMap(primary);
+        border: 1px solid colorMap(primary);
+        background: transparent;
+        padding: 0.5rem;
+        cursor: pointer;
+
+        &:focus { outline: none; }
+
+        &:hover, &:active {
+            color: colorMap(plain);
+            background: colorMap(primary);
+        }
+    }
+}
