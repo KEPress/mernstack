@@ -1,5 +1,14 @@
-@import 'mobile.scss';
+$map: (plain: white, primary: #292929, secondary: #f8df00);
 
+@function colorMap($key) {
+    @return map-get($map, $key);
+}
+
+@mixin mobile {
+    @media(min-width: 768px) {
+        @content;
+    }
+}
 
 .navlinks {
     display: flex;
@@ -9,11 +18,10 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    @include mobile;
-
+    
     li { 
         margin: 1rem; 
-
+    
         a { 
             color: colorMap(primary);
             border: 1px solid transparent;
@@ -26,7 +34,6 @@
                 border-color: colorMap(primary);
             }
         }
-
     }
 
     button {
@@ -36,7 +43,7 @@
         background: transparent;
         padding: 0.5rem;
         cursor: pointer;
-
+      
         &:focus { outline: none; }
 
         &:hover, &:active {

@@ -1,0 +1,61 @@
+$map: (grayline: #ccc, backdrop: #f8f8f8, invalid: red, invalid-backdrop: #ffd1d1,
+        form-backdrop:#ebebeb, form-border: #510077);
+
+@function colorMap($key) {
+    @return map-get($map, $key);
+}
+
+@mixin blockDisplay {
+    display: block;
+}
+
+.form-control {
+    margin: 1rem 0rem;
+
+    label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        @include blockDisplay;
+    }
+    
+    input {
+        width: 100%; font: inherit;
+        border: 1px solid colorMap(grayline);
+        background: colorMap(backdrop);
+        padding: 0.15rem 0.25rem;
+        @include blockDisplay;
+
+        &:focus {
+            outline: none;
+            background: colorMap(form-backdrop);
+            border-color: colorMap(form-border);
+        }
+    }
+
+    textarea {
+        width: 100%; font: inherit;
+        border: 1px solid colorMap(grayline);
+        background: colorMap(backdrop);
+        padding: 0.15rem 0.25rem;
+        @include blockDisplay;
+
+        &:focus {
+            outline: none;
+            background: colorMap(form-backdrop);
+            border-color: colorMap(form-border);
+        }
+    }
+
+}
+
+.form-control-invalid {
+    label, p {
+        color: colorMap(invalid);
+    }
+
+    input, textarea {
+        border-color: colorMap(invalid);
+        background: colorMap(invalid-backdrop);
+    }
+}
+  

@@ -1,0 +1,56 @@
+$map: (plain: white, main: #ff0055, primary:#ff4382, danger: #830000, second:#f34343, diasbled: #979797, disable: #ccc);
+
+@function colorMap($key) {
+    @return map-get($map, $key);
+}
+
+.button {
+    font: inherit;
+    display: inline-block;
+    padding: 0.1rem 1.5rem;
+    border: 1px solid colorMap(main);
+    border-radius: 4px;
+    background: colorMap(main);
+    color: colorMap(plain);
+    margin-right: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:focus { outline: none; }
+
+    &:active, &:hover {
+        background: colorMap(primary);
+        border-color: colorMap(primary);
+    }
+
+    &:disabled, &:hover:disabled, &:active:disabled {
+        background: colorMap(disable);
+        color: colorMap(diasbled);
+        border-color: colorMap(disable);
+        cursor: not-allowed;
+    }
+}
+
+.inverse {
+    color: colorMap(main);
+    background: transparent;
+
+    &:hover, &:active {
+        color: colorMap(plain);
+        background: colorMap(main);
+    }
+}
+
+.danger {
+    background: colorMap(danger);
+    border-color: colorMap(danger);
+
+    &:hover, &:active {
+        background: colorMap(second);
+        border-color: colorMap(second);
+    }
+}
+
+.button-small { font-size: 0.8rem; }
+
+.button-big { font-size: 1.5rem; }

@@ -1,0 +1,66 @@
+By setting up a proxy link inside the client/frontend package.json to the server/backend via api you can utilize fetch() this way:
+
+
+try {
+                setLoading(true)
+                const response = await fetch(`/users/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type':'application/json' },
+                    body: JSON.stringify({
+                        username: state.inputs.username?.value,
+                        email: state.inputs.email?.value,
+                        passcode: state.inputs.passcode?.value
+                    })
+                })
+                const data = await response.json()
+                if (!response.ok) throw new Error(data.message)
+                authenticate.login()
+                setLoading(false)
+            } catch (error) {
+                setLoading(false)
+                setError(error.message)
+                console.log(error)
+            }
+
+//CODE TO SAVE FOR REFERENCE
+
+import React, { useEffect, useState, Fragment, Suspense } from 'react'
+import { json, defer, useParams, useLoaderData, Await } from 'react-router-dom'
+import { List } from '../../widgets/list/List'
+import { useHttp } from '../../../shared/hooks/useHttp'
+import { Error } from '../../../shared/widgets/error/Error'
+import { Loading } from '../../../shared/widgets/loader/Loading'
+
+
+export const UserPlaces = () => {
+
+    //GET id from url
+    const uid = useParams().uid
+
+    const [places, setPlaces] = useState(null)
+
+    const { loading, error, sendRequest, clearError } = useHttp()
+
+    useEffect(() => {
+        const fetchPlaces = async () => {
+            try {
+                const response = await sendRequest(`/places/user/${uid}`)
+                setPlaces(response.places)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchPlaces()
+    }, [sendRequest, uid])
+
+
+    return (<Fragment>
+                <Error error={error} onClear={clearError} />
+                { loading && (<div className='center'><Loading /></div>)}
+                {!loading && (places) && 
+                    (<>
+                        <h1>User Places Visited</h1>
+                        <List items={places} />
+                    </>)}
+            </Fragment>)
+}

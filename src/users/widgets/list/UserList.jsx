@@ -3,16 +3,15 @@ import { UserItem  } from '../item/UserItem'
 import { Card } from '../../../shared/widgets/card/Card'
 import './UserList.scss'
 
-export const UserList = (props) => {
+export const UserList = ({ users}) => {
 
-    if (props.items.length === 0) return (<Fragment><div className='center'><Card><h2>No Users</h2></Card></div></Fragment>)
+    console.log(users)
+
+    if (users.length === 0) return (<Fragment><div className='center'><Card><h2>No Users</h2></Card></div></Fragment>)
     else return (<Fragment>
-                    <ul className='users-list'>{props.items.map((user) => (
-                        <UserItem key={user.id} id={user.id} image={user.image} name={user.name} count={user.places}/> 
+                    <ul className='users-list'>{users.map((user) => (
+                        <UserItem key={user._id} uid={user._id} image={user.image} username={user.username} count={user.places.length}/> 
                     ))}</ul>
                 </Fragment>)
-    
-
-   
-
+                
 }

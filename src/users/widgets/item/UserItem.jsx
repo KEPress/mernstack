@@ -5,16 +5,16 @@ import { Card } from '../../../shared/widgets/card/Card'
 
 import './UserItem.scss'
 
-export const UserItem = (props) => {
+export const UserItem = ({ uid, username, image, count}) => {
 
-  return (<Fragment>
+    return (<Fragment>
             <li className='user-item'>
                 <Card className='user-item'>
-                    <Link to={`/${props.id}/places`}>                   
-                        <Avatar className='user-image' image={props.image} alt={props.name} />
+                    <Link to={`/${uid}/places`}>                   
+                        <Avatar className='user-image' image={`${process.env.REACT_APP_IMAGE}/${image}`} alt={username} />
                         <div className='user-info'>
-                            <h2>{props.name}</h2>
-                            <h3>{props.count} {props.count === 1 ? ('Place'):('Places')}</h3>
+                            <h2>{username}</h2>
+                            <h3>{count} {count === 1 ? ('Place'):('Places')}</h3>
                         </div>
                     </Link>
                 </Card>
